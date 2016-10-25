@@ -5,11 +5,11 @@ public void setup()
 }
 public void draw() 
 {
-  //your code here
+  triangle(10, 10, 100, 100, 50, 50);
 }
-class SpaceShip //extends Floater  
-{   
-    //your code here
+class SpaceShip extends Floater
+{  
+    //your code her
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
