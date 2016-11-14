@@ -1,16 +1,81 @@
-//your variable declarations here
+SpaceShip bob; 
+Star[] space = new Star[250];
 public void setup() 
 {
-  //your code here
-}
+  size(800,800);
+  bob = new SpaceShip();
+ 
+   for(int i = 0; i<galaxy.length; i++){
+      galaxy[i]= new Star();}
 public void draw() 
-{
-  triangle(10, 10, 100, 100, 50, 50);
-}
+{ background(0,0,0);
+  bob.show();
+  bob.move();
+ for(int i = 0; i<galaxy.length; i++){
+      galaxy[i].show();}}
+ 
 class SpaceShip extends Floater
-{  
-    //your code her
-}
+{ 
+public SpaceShip(){
+       corners = 4;
+      xCorners = new int[corners];
+      yCorners = new int[corners];
+      xCorners[0]= -8;
+      yCorners[0]= -8;
+      xCorners[1]=  16;
+      yCorners[1]=  0;
+      xCorners[2]=  -18;
+      yCorners[2]= 18;
+      xCorners[3]= -2;
+      yCorners[3]= 0;
+      
+    myColor= color(200,200,200);
+    myCenterX = 100;
+    myCenterY=100;
+    myDirectionX =0.0;
+    myDirectionY =0.0;
+    myPointDirection =0;}
+
+ public void setX(int x){myCenterX = x; }
+ public int getX(){return (int) myCenterX;}
+ public void setY(int y){myCenterY =y;}
+ public int  getY(){return (int)myCenterY;}
+ public void setDirectionX(double x){ myDirectionX = x;}
+ public double getDirectionX(){return myDirectionX;}
+ public void setDirectionY(double y){myDirectionY =y;}
+ public double getDirectionY(){return myDirectionY;}
+ public void setPointDirection(int degrees){myPointDirection = degrees;}
+public double getPointDirection(){return myPointDirection;}}
+ class Star{
+  private int myX,myY;
+  public Star(){
+    myX=(int)(Math.random()*500);
+    myY= (int)(Math.random()*500);}
+  public void show(){
+    fill(0,0,0);
+    ellipse(myX,myY,4,4);
+  }}
+  
+  public void keyPressed(){
+    ///hyperSpace
+    if(key == 's'){
+      bob.setX((int)(Math.random()*600));
+      bob.setY((int)(Math.random()*600));
+      bob.setDirectionX(0.0);
+      bob.setDirectionY(0.0);
+      bob.setPointDirection(0);}
+    if(key == 'w'){
+      bob.accelerate(+1);
+    }
+    if(key=='l'){
+      bob.rotate(+10);}
+    if(key=='j'){
+      bob.rotate(-10);}
+    }
+
+
+  
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
@@ -20,7 +85,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   protected double myCenterX, myCenterY; //holds center coordinates   
   protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
   protected double myPointDirection; //holds current direction the ship is pointing in degrees    
-  abstract public void setX(int x);  
+  abstract public void setX(int x);
   abstract public int getX();   
   abstract public void setY(int y);   
   abstract public int getY();   
